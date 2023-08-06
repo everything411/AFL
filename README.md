@@ -7,6 +7,10 @@ Originally developed by Michal Zalewski <lcamtuf@google.com>.
 See [QuickStartGuide.txt](docs/QuickStartGuide.txt) if you don't have time to read
 this file.
 
+## 0) 适配 LLVM16.0.x
+
+由于 AFL 的 llvm_mode 的插桩 Pass 过于老旧，更新了 LLVM-16.0.x 的写法，添加了 New PassManager 的适配，编译方式与之前一致
+
 ## 1) Challenges of guided fuzzing
 
 Fuzzing is one of the most powerful and proven strategies for identifying
