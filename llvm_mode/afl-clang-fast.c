@@ -134,9 +134,8 @@ static void edit_params(u32 argc, char** argv) {
 #endif
 #else
   cc_params[cc_par_cnt++] = "-Xclang";
-  cc_params[cc_par_cnt++] = "-load";
-  cc_params[cc_par_cnt++] = "-Xclang";
-  cc_params[cc_par_cnt++] = alloc_printf("%s/afl-llvm-pass.so", obj_path);
+  cc_params[cc_par_cnt++] = "-fpass-plugin=../afl-llvm-pass.so";
+  // cc_params[cc_par_cnt++] = alloc_printf("\"%s/afl-llvm-pass.so\"", obj_path);
 #endif /* ^USE_TRACE_PC */
 
   cc_params[cc_par_cnt++] = "-Qunused-arguments";
@@ -349,6 +348,12 @@ int main(int argc, char** argv) {
 #endif
 
   edit_params(argc, argv);
+
+  // add here
+  // printf(cCYA"CC/CXX Args:\n");
+  // for(int i = 0; i < cc_par_cnt; i++) {
+  //   printf("\targ%d: %s \n", i + 1, cc_params[i]);
+  // }
 
   execvp(cc_params[0], (char**)cc_params);
 
